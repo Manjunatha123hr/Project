@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboard Smart - New Hire Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        /* Header Styling */
+        .header {
+            background-color: #007bff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .logo img {
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .header h1 {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        /* Dashboard Layout */
+        .dashboard {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .welcome-message {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .task-section {
+            margin-bottom: 40px;
+        }
+
+        .task-section h2 {
+            color: #007bff;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .task-list li {
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-status {
+            color: #6c757d;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background-color: #343a40;
+            padding: 15px;
+            color: white;
+            text-align: center;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .footer a {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="App Logo"> <!-- Replace with actual logo image -->
+        </div>
+        <h1>Onboard Smart</h1>
+    </header>
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+        <!-- Welcome Message -->
+        <div class="welcome-message">
+            <h2>Welcome, [New Hire Name]!</h2>
+            <p>Here are your assigned tasks. Please complete them to stay on track with your onboarding process.</p>
+        </div>
+
+        <!-- HR Compliance Tasks Section -->
+        <div class="task-section">
+            <h2>HR Compliance Tasks</h2>
+            <ul class="task-list">
+                <li>
+                    <span>Complete HR Policy Training</span>
+                    <span class="task-status">Pending</span>
+                </li>
+                <li>
+                    <span>Sign NDA Agreement</span>
+                    <span class="task-status">In Progress</span>
+                </li>
+                <li>
+                    <span>Submit Documents</span>
+                    <span class="task-status">Completed</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Technical Training Tasks Section -->
+        <div class="task-section">
+            <h2>Technical Training Tasks</h2>
+            <ul class="task-list">
+                <li>
+                    <span>Complete Angular Basics</span>
+                    <span class="task-status">Pending</span>
+                </li>
+                <li>
+                    <span>Set Up Development Environment</span>
+                    <span class="task-status">In Progress</span>
+                </li>
+                <li>
+                    <span>Learn Git & GitHub</span>
+                    <span class="task-status">Completed</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><a href="#">Terms and Conditions</a> | &copy; 2024 Onboard Smart</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboard Smart - Push Tasks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .header {
+            background-color: #007bff;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .push-tasks-form {
+            padding: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .push-tasks-form h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .new-hire-select, .task-select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+
+        .assigned-tasks {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background-color: #343a40;
+            padding: 15px;
+            color: white;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer a {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Onboard Smart - Push Tasks</h1>
+    </header>
+
+    <div class="push-tasks-form">
+        <h2>Assign Technical Tasks to New Hire</h2>
+
+        <select class="new-hire-select" id="newHireSelect" required>
+            <option value="" disabled selected>Select New Hire</option>
+            <option value="john-doe">John Doe</option>
+            <option value="jane-smith">Jane Smith</option>
+            <!-- Add more new hires as needed -->
+        </select>
+
+        <div class="assigned-tasks" id="assignedTasks">
+            <!-- Assigned tasks will be displayed here -->
+        </div>
+
+        <select class="task-select" id="taskSelect" required>
+            <option value="" disabled selected>Select Task to Assign</option>
+            <option value="angular-basics">Complete Angular Basics</option>
+            <option value="setup-dev-environment">Set Up Development Environment</option>
+            <option value="learn-git">Learn Git & GitHub</option>
+            <!-- Add more tasks from the pool as needed -->
+        </select>
+
+        <button class="submit-btn" id="pushTaskBtn">Push Task</button>
+        <div id="confirmationMessage" style="margin-top: 10px; color: green;"></div>
+    </div>
+
+    <footer class="footer">
+        <p><a href="#">Terms and Conditions</a> | &copy; 2024 Onboard Smart</p>
+    </footer>
+
+    <script>
+        const newHireSelect = document.getElementById('newHireSelect');
+        const taskSelect = document.getElementById('taskSelect');
+        const assignedTasksDiv = document.getElementById('assignedTasks');
+        const pushTaskBtn = document.getElementById('pushTaskBtn');
+        const confirmationMessage = document.getElementById('confirmationMessage');
+
+        const assignedTasks = {
+            'john-doe': ['Complete Angular Basics'],
+            'jane-smith': ['Learn Git & GitHub'],
+        };
+
+        newHireSelect.addEventListener('change', () => {
+            const selectedNewHire = newHireSelect.value;
+            displayAssignedTasks(selectedNewHire);
+            updateTaskSelect(selectedNewHire);
+        });
+
+        pushTaskBtn.addEventListener('click', () => {
+            const selectedNewHire = newHireSelect.value;
+            const selectedTask = taskSelect.value;
+
+            if (selectedNewHire && selectedTask) {
+                assignTask(selectedNewHire, selectedTask);
+                confirmationMessage.innerText = `Task "${selectedTask}" assigned to ${selectedNewHire}.`;
+                updateTaskSelect(selectedNewHire);
+            }
+        });
+
+        function displayAssignedTasks(newHire) {
+            assignedTasksDiv.innerHTML = `<h3>Assigned Tasks:</h3>`;
+            if (assignedTasks[newHire]) {
+                assignedTasks[newHire].forEach(task => {
+                    assignedTasksDiv.innerHTML += `<p>${task}</p>`;
+                });
+            } else {
+                assignedTasksDiv.innerHTML += `<p>No tasks assigned.</p>`;
+            }
+        }
+
+        function updateTaskSelect(newHire) {
+            const tasks = Array.from(taskSelect.options);
+            tasks.forEach(task => {
+                task.disabled = assignedTasks[newHire] && assignedTasks[newHire].includes(task.value);
+            });
+        }
+
+        function assignTask(newHire, task) {
+            if (!assignedTasks[newHire]) {
+                assignedTasks[newHire] = [];
+            }
+            assignedTasks[newHire].push(task);
+        }
+    </script>
+
+</body>
+</html>
